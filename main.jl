@@ -1,5 +1,3 @@
-include("cantorPairingRecursive.jl");
-include("inverseCantorPairingRecursive.jl");
 include("binaryRepresentation.jl");
 include("isValidSet.jl");
 
