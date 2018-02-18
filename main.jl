@@ -1,5 +1,5 @@
 include("binaryRepresentation.jl");
-include("isValidSet.jl");
+include("isValidSetCard.jl");
 
 q = 5; # Number of symbols on each card
 m = q*(q-1)+1; # Number of symbols/card in total
@@ -28,19 +28,19 @@ while true
         end
     end
 
-    # Calculate int representation, if any
+    # Calculate int representation (=bits), if any
+    # If the card is invalid, the representation will be equal to zero
 	card = binaryRepresentation(cardSymbols, m);
 	if (0 < card)
-        if (!in(card, set))
-            tmpSet = push!(set[1:setLength], card);
-            validTmpSet = isValidSet(tmpSet);
-            if (validTmpSet)
-                set[setLength+1] = card;
-                setLength = setLength + 1;
-                print(string("Card ", setLength ," added: ",cardSymbols,"\n"));
-                if (setLength == m)
-                    break;
-                end
+        # Check if the card can be added to the set
+        if (isValidSetCard(set[1:setLength], card))
+            # Add card to the existing set and move the pointer (=setLength)
+            set[setLength+1] = card;
+            setLength = setLength + 1;
+            print(string("Card ", setLength ," added: ",cardSymbols,"\n"));
+            if (setLength == m)
+                # Optimal set size reached
+                break;
             end
         end
 	end
