@@ -30,8 +30,8 @@ while true
 
     # Calculate int representation (=bits), if any
     # If the card is invalid, the representation will be equal to zero
-	card = binaryRepresentation(cardSymbols, m);
-	if (0 < card)
+    card = binaryRepresentation(cardSymbols, m);
+    if (0 < card)
         # Check if the card can be added to the set
         if (isValidSetCard(set[1:setLength], card))
             # Add card to the existing set and move the pointer (=setLength)
@@ -43,7 +43,7 @@ while true
                 break;
             end
         end
-	end
+    end
     #
     if (cardSymbols[1] >= m)
         break;
